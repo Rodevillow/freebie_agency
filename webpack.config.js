@@ -3,6 +3,7 @@ const path = require('path');
 const miniCss = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, 'src'),
@@ -42,6 +43,26 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                 ]
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                    },
+                }]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'images/'
+                    }
+                }]
             }
         ]
     },
@@ -53,6 +74,18 @@ module.exports = {
     ...PAGES.map(page => new HtmlWebpackPlugin ({
         template: `${PAGES_DIR}/${page}`,
         filename: `./${page.replace(/\.pug/,'.html')}`
-    }))
+    })),
+    new CopyWebpackPlugin({
+        patterns: [
+            {
+                from: 'src/assets/fonts',
+                to: 'fonts'
+            },
+            {
+                from: 'src/assets/images',
+                to: 'images'
+            },
+        ],
+    })
    ]
 };
