@@ -1,4 +1,26 @@
 extends ../layout/main.pug
 
 block content
-    p qweqweqeqwe
+    section#hero
+        include ../blocks/header
+        .hero-content
+            h1 WHERE GREAT IDEAS COME TO LIFE
+            p Passionate creative studio helping startups grow their business!
+            ul
+                li 01
+                    span.line
+                li 02
+                li 03
+    section#first-section
+        .first-section-content
+            .first-section-content__slide_1
+                h3 WE ARE
+                span.sub-title THE SQWD
+                span.short-black-line
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+                img.face(src="/images/face.png", alt="Face")
+            .first-section-content__slide_2
+            .first-section-content__slide_3
+                span.short-black-line
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+                img.face(src="/images/man.png", alt="Man")

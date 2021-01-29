@@ -9,8 +9,8 @@ html(lang="en")
         link(href=`css/style.css`, rel="stylesheet")
         block head
     body
-        include ../blocks/header
-        block content    
-        include ../blocks/footer
-        block script
-        script(src='/bundle.bundle.js')
+        .container
+            block content
+            //- include ../blocks/footer
+            block script
+            script(src='/bundle.bundle.js')
